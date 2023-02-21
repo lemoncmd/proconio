@@ -3,7 +3,7 @@ module proconio
 
 [params]
 pub struct InputConfig {
-	max_string_len usize = 1_048_576
+	max_string_len int = 1_048_576
 }
 
 struct InputError {
@@ -33,7 +33,7 @@ fn stack_input_error(typ string, err IError) IError {
 	return err
 }
 
-pub fn input[T]() T {
+pub fn input[T](config InputConfig) T {
 	$if T is u8 {
 		return u8(read_u64())
 	} $else $if T is u16 {
@@ -60,14 +60,16 @@ pub fn input[T]() T {
 		return read_f32()
 	} $else $if T is f64 {
 		return read_f64()
-		//	} $else $if T is rune {
-		//	} $else $if T is string {
+	} $else $if T is rune {
+		return read_rune()
+	} $else $if T is string {
+		return read_string(config.max_string_len)
 	} $else {
 		panic('unimplemented')
 	}
 }
 
-pub fn try_input[T]() !T {
+pub fn try_input[T](config InputConfig) !T {
 	$if T is u8 {
 		return u8(try_read_u64()!)
 	} $else $if T is u16 {
@@ -90,8 +92,10 @@ pub fn try_input[T]() !T {
 		return try_read_f32()!
 	} $else $if T is f64 {
 		return try_read_f64()!
-		//	} $else $if T is rune {
-		//	} $else $if T is string {
+	} $else $if T is rune {
+		return try_read_rune()!
+	} $else $if T is string {
+		return read_string(config.max_string_len)
 	} $else {
 		panic('unimplemented')
 	}

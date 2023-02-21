@@ -37,3 +37,23 @@ fn test_f32() ! {
 	a := input[f32]()
 	assert a == 2.3
 }
+
+fn test_rune() ! {
+	init_stdin('a')!
+	a := input[rune]()
+	assert a == `a`
+
+	init_stdin('あ')!
+	b := input[rune]()
+	assert b == `あ`
+}
+
+fn test_string() ! {
+	init_stdin('cogito ergo\nsum')!
+	a := input[string]()
+	assert a == 'cogito'
+	b := input[string]()
+	assert b == 'ergo'
+	c := input[string]()
+	assert c == 'sum'
+}

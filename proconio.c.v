@@ -27,8 +27,25 @@ fn read_f64() f64 {
 	return number
 }
 
-fn read_string() string {
-	panic('unimplemented')
+fn read_rune() rune {
+	number := u8(0)
+	unsafe { C.scanf(c'%c', &number) }
+	if number < 128 {
+		return rune(number)
+	}
+	mut buf := [number]
+	for _ in 0 .. utf8_char_len(number) - 1 {
+		rest := u8(0)
+		unsafe { C.scanf(c'%c', &rest) }
+		buf << rest
+	}
+	return buf.utf8_to_utf32() or { rune(number) }
+}
+
+fn read_string(buf_size int) string {
+	buf := []u8{len: buf_size}
+	unsafe { C.scanf(c'%s', &buf[0]) }
+	return unsafe { tos_clone(&buf[0]) }
 }
 
 fn try_read_i64() !i64 {
@@ -79,6 +96,34 @@ fn try_read_f64() !f64 {
 	return new_input_error('Reached EOF', 'unsigned integer')
 }
 
-fn try_read_string() !string {
-	panic('unimplemented')
+fn try_read_rune() !rune {
+	number := u8(0)
+	mut err := unsafe { C.scanf(c'%c', &number) }
+	if err > 0 && number < 128 {
+		return rune(number)
+	}
+	if err == 0 {
+		return new_input_error('Unable to read character', 'rune')
+	}
+	if err < 0 {
+		return new_input_error('Reached EOF', 'rune')
+	}
+	mut buf := [number]
+	for _ in 0 .. utf8_char_len(number) - 1 {
+		rest := u8(0)
+		err = unsafe { C.scanf(c'%c', &rest) }
+		if rest < 128 {
+			return new_input_error('Could not decode character as UTF-8', 'rune')
+		}
+		if err == 0 {
+			return new_input_error('Unable to read character', 'rune')
+		}
+		if err < 0 {
+			return new_input_error('Reached EOF', 'rune')
+		}
+		buf << rest
+	}
+	return buf.utf8_to_utf32() or {
+		return new_input_error('Could not decode character as UTF-8', 'rune')
+	}
 }
