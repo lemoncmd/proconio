@@ -30,9 +30,7 @@ fn try_read_i64() !i64 {
 	if err == 0 {
 		return new_input_error('Unable to read number', 'signed integer')
 	}
-	if err < 0 {
-		return new_input_error('Reached EOF', 'signed integer')
-	}
+	return new_input_error('Reached EOF', 'signed integer')
 }
 
 fn try_read_u64() !u64 {
@@ -44,9 +42,7 @@ fn try_read_u64() !u64 {
 	if err == 0 {
 		return new_input_error('Unable to read number', 'unsigned integer')
 	}
-	if err < 0 {
-		return new_input_error('Reached EOF', 'unsigned integer')
-	}
+	return new_input_error('Reached EOF', 'unsigned integer')
 }
 
 fn try_read_string() !string {

@@ -23,12 +23,14 @@ fn new_input_error(detail string, typ string) IError {
 	})
 }
 
-fn stack_input_error(typ string, err_ IError) IError {
-	err := err_ as InputError
-	return IError(InputError{
-		detail: err.detail
-		typ: '${err.typ}\nin ${typ}'
-	})
+fn stack_input_error(typ string, err IError) IError {
+	if err is InputError {
+		return IError(InputError{
+			detail: err.detail
+			typ: '${err.typ}\nin ${typ}'
+		})
+	}
+	return err
 }
 
 pub fn input[T]() T {
