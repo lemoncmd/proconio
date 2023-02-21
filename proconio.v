@@ -34,9 +34,65 @@ fn stack_input_error(typ string, err IError) IError {
 }
 
 pub fn input[T]() T {
-	panic('unimplemented')
+	$if T is u8 {
+		return u8(read_u64())
+	} $else $if T is u16 {
+		return u16(read_u64())
+	} $else $if T is u32 {
+		return u32(read_u64())
+	} $else $if T is u64 {
+		return read_u64()
+	} $else $if T is usize {
+		return usize(read_u64())
+	} $else $if T is int {
+		return int(read_i64())
+	} $else $if T is i8 {
+		return i8(read_i64())
+	} $else $if T is i16 {
+		return i16(read_i64())
+	} $else $if T is i32 {
+		return i32(read_i64())
+	} $else $if T is i64 {
+		return read_i64()
+	} $else $if T is isize {
+		return isize(read_i64())
+	} $else $if T is f32 {
+		return read_f32()
+	} $else $if T is f64 {
+		return read_f64()
+		//	} $else $if T is rune {
+		//	} $else $if T is string {
+	} $else {
+		panic('unimplemented')
+	}
 }
 
 pub fn try_input[T]() !T {
-	panic('unimplemented')
+	$if T is u8 {
+		return u8(try_read_u64()!)
+	} $else $if T is u16 {
+		return u16(try_read_u64()!)
+	} $else $if T is u32 {
+		return u32(try_read_u64()!)
+	} $else $if T is u64 {
+		return try_read_u64()!
+	} $else $if T is int {
+		return int(try_read_i64()!)
+	} $else $if T is i8 {
+		return i8(try_read_i64()!)
+	} $else $if T is i16 {
+		return i16(try_read_i64()!)
+	} $else $if T is i32 {
+		return i32(try_read_i64()!)
+	} $else $if T is i64 {
+		return try_read_i64()!
+	} $else $if T is f32 {
+		return try_read_f32()!
+	} $else $if T is f64 {
+		return try_read_f64()!
+		//	} $else $if T is rune {
+		//	} $else $if T is string {
+	} $else {
+		panic('unimplemented')
+	}
 }
