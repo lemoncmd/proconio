@@ -61,7 +61,7 @@ fn test_string() ! {
 fn test_array() ! {
 	init_stdin('1 2 3')!
 	a := input[[]int](array_len: [3])
-	assert a == [int(1),2,3]
+	assert a == [int(1), 2, 3]
 
 	init_stdin('1 2 3\n4 5 6')!
 	b := input[[][]int](array_len: [2, 3])
@@ -97,4 +97,33 @@ fn test_struct() ! {
 	init_stdin('2 3\n1 2 3\n4 5 6')!
 	c := input[Baz]()
 	assert c.a == [[int(1), 2, 3], [4, 5, 6]]
+}
+
+struct Vec2 {
+	x u64
+	y u64
+}
+
+struct Input {
+	i usize // structs are read from top
+	j usize
+	c rune   // you can input a character by this
+	s string // you can also read string
+	a []u64   [i] // you can specify how many times you want to read by variable
+	x []Vec2  [j] // you can also specify an array of a struct
+	y [][]u64 [i; j] // you can input multi-dimentional array by splitting with ;
+}
+
+fn test_readme() ! {
+	init_stdin('5\n2 3a foo\n4 5\n6 7\n8 9\n10 11\n1 2 3\n4 5 6\n5 4 3 2 1\n-3 -4')!
+	i := input[u64]() // you can specify what type you want to read by a generic parameter
+	inp := input[Input]() // you can also use a struct
+	arr := input[[]int](array_len: [int(i)]) // you can input an array
+	// currently unavailable because of cgen bug. use try_input[u64]()! instead.
+	//	vec := try_input[Vec2]()! // try_input is `input` which returns Result of the specified type
+
+	assert i == 5
+	println(inp)
+	assert arr == [int(5), 4, 3, 2, 1]
+	//	assert vec.x == -3
 }

@@ -55,7 +55,7 @@ fn try_read_array[T](_ []T, len []int) ![]T {
 		$if T is $Array {
 			arr[i] = try_read_array(T{}, len#[1..]) or { return stack_input_error('Array', err) }
 		} $else {
-			arr[i] = input[T]() or { return stack_input_error('Array', err) }
+			arr[i] = try_input[T]() or { return stack_input_error('Array', err) }
 		}
 	}
 	return arr
@@ -397,6 +397,8 @@ pub fn input[T](config InputConfig) T {
 					)
 				} $else $if field.is_struct {
 					strc.$(field.name) = input_field(strc.$(field.name), config)
+				} $else $if field.typ is string {
+					strc.$(field.name) = input_field(strc.$(field.name), config)
 				} $else {
 					strc.$(field.name) = input_field(strc.$(field.name), config)
 					variable[field.name] = int(strc.$(field.name))
@@ -731,17 +733,19 @@ pub fn try_input[T](config InputConfig) !T {
 					strc.$(field.name) = try_input_field(strc.$(field.name),
 						max_string_len: config.max_string_len
 						array_len: len
-					)
+					) or { return stack_input_error(typeof[T]().name, err) }
 				} $else $if field.is_struct {
-					strc.$(field.name) = try_input_field(strc.$(field.name), config)
+					strc.$(field.name) = try_input_field(strc.$(field.name), config) or { return stack_input_error(typeof[T]().name, err) }
+				} $else $if field.typ is string{
+					strc.$(field.name) = try_input_field(strc.$(field.name), config) or { return stack_input_error(typeof[T]().name, err) }
 				} $else {
-					strc.$(field.name) = try_input_field(strc.$(field.name), config)
+					strc.$(field.name) = try_input_field(strc.$(field.name), config) or { return stack_input_error(typeof[T]().name, err) }
 					variable[field.name] = int(strc.$(field.name))
 				}
 			}
 		} else {
 			$for field in T.fields {
-				strc.$(field.name) = try_input_field(strc.$(field.name), config)
+				strc.$(field.name) = try_input_field(strc.$(field.name), config) or { return stack_input_error(typeof[T]().name, err) }
 			}
 		}
 		return strc
