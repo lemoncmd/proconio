@@ -62,9 +62,41 @@ fn test_array() ! {
 	/*
 	init_stdin('1 2 3')!
 	a := input[[]int](array_len: [3])
-	assert a == [int(1),2,3]*/
-
+	assert a == [int(1),2,3]
+	*/
 	init_stdin('1 2 3\n4 5 6')!
 	b := input[[][]int](array_len: [2, 3])
 	assert b == [[int(1), 2, 3], [4, 5, 6]]
+}
+
+struct Foo {
+	a u64
+	b u64
+	c u64
+}
+
+struct Bar {
+	i int
+	a []int [i]
+}
+
+struct Baz {
+	i int
+	j int
+	a [][]int [i; j]
+}
+
+fn test_struct() ! {
+	init_stdin('1 2 3')!
+	a := input[Foo]()
+	assert a.a == 1 && a.b == 2 && a.c == 3
+
+	/*
+	init_stdin('3\n1 2 3')!
+	b := input[Bar]()
+	assert b.a == [int(1), 2, 3]
+	*/
+	init_stdin('2 3\n1 2 3\n4 5 6')!
+	c := input[Baz]()
+	assert c.a == [[int(1), 2, 3], [4, 5, 6]]
 }

@@ -61,6 +61,16 @@ fn try_read_array[T](_ []T, len []int) ![]T {
 	return arr
 }
 
+[inline]
+fn input_field[T](_ T, config InputConfig) T {
+	return input[T](config)
+}
+
+[inline]
+fn try_input_field[T](_ T, config InputConfig) !T {
+	return try_input[T](config)
+}
+
 pub fn input[T](config InputConfig) T {
 	$if T is u8 {
 		return u8(read_u64())
@@ -94,6 +104,39 @@ pub fn input[T](config InputConfig) T {
 		return read_string(config.max_string_len)
 	} $else $if T is $Array {
 		return read_array(T{}, config.array_len)
+	} $else $if T is $Struct {
+		mut strc := T{}
+		mut has_array := false
+		$for field in T.fields {
+			$if field.is_array {
+				has_array = true
+			}
+		}
+		if has_array {
+			mut variable := map[string]int{}
+			$for field in T.fields {
+				$if field.is_array {
+					mut len := []int{}
+					for attr in field.attrs {
+						len << variable[attr]
+					}
+					strc.$(field.name) = input_field(strc.$(field.name),
+						max_string_len: config.max_string_len
+						array_len: len
+					)
+				} $else $if field.is_struct {
+					strc.$(field.name) = input_field(strc.$(field.name), config)
+				} $else {
+					strc.$(field.name) = input_field(strc.$(field.name), config)
+					variable[field.name] = int(strc.$(field.name))
+				}
+			}
+		} else {
+			$for field in T.fields {
+				strc.$(field.name) = input_field(strc.$(field.name), config)
+			}
+		}
+		return strc
 	} $else {
 		panic('unimplemented')
 	}
@@ -128,6 +171,39 @@ pub fn try_input[T](config InputConfig) !T {
 		return read_string(config.max_string_len)
 	} $else $if T is $Array {
 		return try_read_array(T{}, config.array_len)!
+	} $else $if T is $Struct {
+		mut strc := T{}
+		mut has_array := false
+		$for field in T.fields {
+			$if field.is_array {
+				has_array = true
+			}
+		}
+		if has_array {
+			mut variable := map[string]int{}
+			$for field in T.fields {
+				$if field.is_array {
+					mut len := []int{}
+					for attr in field.attrs {
+						len << variable[attr]
+					}
+					strc.$(field.name) = try_input_field(strc.$(field.name),
+						max_string_len: config.max_string_len
+						array_len: len
+					)
+				} $else $if field.is_struct {
+					strc.$(field.name) = try_input_field(strc.$(field.name), config)
+				} $else {
+					strc.$(field.name) = try_input_field(strc.$(field.name), config)
+					variable[field.name] = int(strc.$(field.name))
+				}
+			}
+		} else {
+			$for field in T.fields {
+				strc.$(field.name) = try_input_field(strc.$(field.name), config)
+			}
+		}
+		return strc
 	} $else {
 		panic('unimplemented')
 	}
