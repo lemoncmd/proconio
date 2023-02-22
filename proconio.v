@@ -4,6 +4,7 @@ module proconio
 [params]
 pub struct InputConfig {
 	max_string_len int = 1_048_576
+	array_len      []int
 }
 
 struct InputError {
@@ -31,6 +32,33 @@ fn stack_input_error(typ string, err IError) IError {
 		})
 	}
 	return err
+}
+
+fn read_array[T](_ []T, len []int) []T {
+	mut arr := []T{len: len[0]}
+	for i in 0 .. len[0] {
+		$if T is $Array {
+			arr[i] = read_array(T{}, len#[1..])
+		} $else {
+			arr[i] = input[T]()
+		}
+	}
+	return arr
+}
+
+fn try_read_array[T](_ []T, len []int) ![]T {
+	if len.len == 0 {
+		return new_input_error('You must specify the array length.', 'Array')
+	}
+	mut arr := []T{len: len[0]}
+	for i in 0 .. len[0] {
+		$if T is $Array {
+			arr[i] = try_read_array(T{}, len#[1..]) or { return stack_input_error('Array', err) }
+		} $else {
+			arr[i] = input[T]() or { return stack_input_error('Array', err) }
+		}
+	}
+	return arr
 }
 
 pub fn input[T](config InputConfig) T {
@@ -64,6 +92,8 @@ pub fn input[T](config InputConfig) T {
 		return read_rune()
 	} $else $if T is string {
 		return read_string(config.max_string_len)
+	} $else $if T is $Array {
+		return read_array(T{}, config.array_len)
 	} $else {
 		panic('unimplemented')
 	}
@@ -96,6 +126,8 @@ pub fn try_input[T](config InputConfig) !T {
 		return try_read_rune()!
 	} $else $if T is string {
 		return read_string(config.max_string_len)
+	} $else $if T is $Array {
+		return try_read_array(T{}, config.array_len)!
 	} $else {
 		panic('unimplemented')
 	}

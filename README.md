@@ -24,6 +24,7 @@ struct Input {
 
 i := proconio.input[u64]() // you can specify what type you want to read by a generic parameter
 input := proconio.input[Input]() // you can also use a struct
+arr := proconio.intpu[[]int](array_len: [int(i)]) // you can input an array
 vec := proconio.try_input[Vec2]()? // try_input is `input` which returns Result of the specified type
 // try_input can check whether input is EOF or not
 ```

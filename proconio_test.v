@@ -57,3 +57,14 @@ fn test_string() ! {
 	c := input[string]()
 	assert c == 'sum'
 }
+
+fn test_array() ! {
+	/*
+	init_stdin('1 2 3')!
+	a := input[[]int](array_len: [3])
+	assert a == [int(1),2,3]*/
+
+	init_stdin('1 2 3\n4 5 6')!
+	b := input[[][]int](array_len: [2, 3])
+	assert b == [[int(1), 2, 3], [4, 5, 6]]
+}
