@@ -4,7 +4,7 @@ module proconio
 [params]
 pub struct InputConfig {
 	max_string_len int = 1_048_576
-	array_len      []int
+	len      []int
 }
 
 struct InputError {
@@ -104,277 +104,277 @@ pub fn input[T](config InputConfig) T {
 		return read_string(config.max_string_len)
 	// once V bug is fixed, delete below
 	} $else $if T is []u8 {
-		mut arr := []u8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []u8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[u8]()
 		}
 		return arr
 	} $else $if T is []u16 {
-		mut arr := []u16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []u16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[u16]()
 		}
 		return arr
 	} $else $if T is []u32 {
-		mut arr := []u32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []u32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[u32]()
 		}
 		return arr
 	} $else $if T is []u64 {
-		mut arr := []u64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []u64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[u64]()
 		}
 		return arr
 	} $else $if T is []usize {
-		mut arr := []usize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []usize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[usize]()
 		}
 		return arr
 	} $else $if T is []int {
-		mut arr := []int{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []int{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[int]()
 		}
 		return arr
 	} $else $if T is []i8 {
-		mut arr := []i8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []i8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[i8]()
 		}
 		return arr
 	} $else $if T is []i16 {
-		mut arr := []i16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []i16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[i16]()
 		}
 		return arr
 	} $else $if T is []i32 {
-		mut arr := []i32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []i32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[i32]()
 		}
 		return arr
 	} $else $if T is []i64 {
-		mut arr := []i64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []i64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[i64]()
 		}
 		return arr
 	} $else $if T is []isize {
-		mut arr := []isize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []isize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[isize]()
 		}
 		return arr
 	} $else $if T is []f32 {
-		mut arr := []f32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []f32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[f32]()
 		}
 		return arr
 	} $else $if T is []f64 {
-		mut arr := []f64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []f64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[f64]()
 		}
 		return arr
 	} $else $if T is []rune {
-		mut arr := []rune{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []rune{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[rune]()
 		}
 		return arr
 	} $else $if T is []string {
-		mut arr := []string{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []string{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = input[string]()
 		}
 		return arr
 	} $else $if T is [][]u8 {
-		mut arr := [][]u8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]u8](array_len: config.array_len#[1..])
+		mut arr := [][]u8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]u8](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]u16 {
-		mut arr := [][]u16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]u16](array_len: config.array_len#[1..])
+		mut arr := [][]u16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]u16](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]u32 {
-		mut arr := [][]u32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]u32](array_len: config.array_len#[1..])
+		mut arr := [][]u32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]u32](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]u64 {
-		mut arr := [][]u64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]u64](array_len: config.array_len#[1..])
+		mut arr := [][]u64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]u64](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]usize {
-		mut arr := [][]usize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]usize](array_len: config.array_len#[1..])
+		mut arr := [][]usize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]usize](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]int {
-		mut arr := [][]int{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]int](array_len: config.array_len#[1..])
+		mut arr := [][]int{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]int](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]i8 {
-		mut arr := [][]i8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]i8](array_len: config.array_len#[1..])
+		mut arr := [][]i8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]i8](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]i16 {
-		mut arr := [][]i16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]i16](array_len: config.array_len#[1..])
+		mut arr := [][]i16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]i16](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]i32 {
-		mut arr := [][]i32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]i32](array_len: config.array_len#[1..])
+		mut arr := [][]i32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]i32](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]i64 {
-		mut arr := [][]i64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]i64](array_len: config.array_len#[1..])
+		mut arr := [][]i64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]i64](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]isize {
-		mut arr := [][]isize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]isize](array_len: config.array_len#[1..])
+		mut arr := [][]isize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]isize](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]f32 {
-		mut arr := [][]f32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]f32](array_len: config.array_len#[1..])
+		mut arr := [][]f32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]f32](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]f64 {
-		mut arr := [][]f64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]f64](array_len: config.array_len#[1..])
+		mut arr := [][]f64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]f64](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]rune {
-		mut arr := [][]rune{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]rune](array_len: config.array_len#[1..])
+		mut arr := [][]rune{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]rune](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][]string {
-		mut arr := [][]string{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[]string](array_len: config.array_len#[1..])
+		mut arr := [][]string{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[]string](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]u8 {
-		mut arr := [][]u8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]u8](array_len: config.array_len#[1..])
+		mut arr := [][]u8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]u8](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]u16 {
-		mut arr := [][]u16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]u16](array_len: config.array_len#[1..])
+		mut arr := [][]u16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]u16](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]u32 {
-		mut arr := [][]u32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]u32](array_len: config.array_len#[1..])
+		mut arr := [][]u32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]u32](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]u64 {
-		mut arr := [][]u64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]u64](array_len: config.array_len#[1..])
+		mut arr := [][]u64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]u64](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]usize {
-		mut arr := [][]usize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]usize](array_len: config.array_len#[1..])
+		mut arr := [][]usize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]usize](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]int {
-		mut arr := [][]int{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]int](array_len: config.array_len#[1..])
+		mut arr := [][]int{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]int](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]i8 {
-		mut arr := [][]i8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]i8](array_len: config.array_len#[1..])
+		mut arr := [][]i8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]i8](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]i16 {
-		mut arr := [][]i16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]i16](array_len: config.array_len#[1..])
+		mut arr := [][]i16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]i16](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]i32 {
-		mut arr := [][]i32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]i32](array_len: config.array_len#[1..])
+		mut arr := [][]i32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]i32](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]i64 {
-		mut arr := [][]i64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]i64](array_len: config.array_len#[1..])
+		mut arr := [][]i64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]i64](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]isize {
-		mut arr := [][]isize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]isize](array_len: config.array_len#[1..])
+		mut arr := [][]isize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]isize](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]f32 {
-		mut arr := [][]f32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]f32](array_len: config.array_len#[1..])
+		mut arr := [][]f32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]f32](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]f64 {
-		mut arr := [][]f64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]f64](array_len: config.array_len#[1..])
+		mut arr := [][]f64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]f64](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]rune {
-		mut arr := [][]rune{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]rune](array_len: config.array_len#[1..])
+		mut arr := [][]rune{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]rune](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is [][][]string {
-		mut arr := [][]string{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = input[[][]string](array_len: config.array_len#[1..])
+		mut arr := [][]string{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = input[[][]string](len: config.len#[1..])
 		}
 		return arr
 	} $else $if T is $Array {
-		return read_array(T{}, config.array_len)
+		return read_array(T{}, config.len)
 	} $else $if T is $Struct {
 		mut strc := T{}
 		mut has_array := false
@@ -393,7 +393,7 @@ pub fn input[T](config InputConfig) T {
 					}
 					strc.$(field.name) = input_field(strc.$(field.name),
 						max_string_len: config.max_string_len
-						array_len: len
+						len: len
 					)
 				} $else $if field.is_struct {
 					strc.$(field.name) = input_field(strc.$(field.name), config)
@@ -443,277 +443,277 @@ pub fn try_input[T](config InputConfig) !T {
 	} $else $if T is string {
 		return read_string(config.max_string_len)
 	} $else $if T is []u8 {
-		mut arr := []u8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []u8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[u8]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []u16 {
-		mut arr := []u16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []u16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[u16]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []u32 {
-		mut arr := []u32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []u32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[u32]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []u64 {
-		mut arr := []u64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []u64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[u64]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []usize {
-		mut arr := []usize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []usize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[usize]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []int {
-		mut arr := []int{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []int{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[int]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []i8 {
-		mut arr := []i8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []i8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[i8]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []i16 {
-		mut arr := []i16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []i16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[i16]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []i32 {
-		mut arr := []i32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []i32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[i32]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []i64 {
-		mut arr := []i64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []i64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[i64]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []isize {
-		mut arr := []isize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []isize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[isize]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []f32 {
-		mut arr := []f32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []f32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[f32]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []f64 {
-		mut arr := []f64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []f64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[f64]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []rune {
-		mut arr := []rune{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []rune{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[rune]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is []string {
-		mut arr := []string{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
+		mut arr := []string{len: config.len[0]}
+		for i in 0 .. config.len[0] {
 			arr[i] = try_input[string]() or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]u8 {
-		mut arr := [][]u8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]u8](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]u8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]u8](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]u16 {
-		mut arr := [][]u16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]u16](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]u16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]u16](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]u32 {
-		mut arr := [][]u32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]u32](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]u32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]u32](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]u64 {
-		mut arr := [][]u64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]u64](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]u64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]u64](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]usize {
-		mut arr := [][]usize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]usize](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]usize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]usize](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]int {
-		mut arr := [][]int{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]int](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]int{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]int](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]i8 {
-		mut arr := [][]i8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]i8](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]i8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]i8](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]i16 {
-		mut arr := [][]i16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]i16](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]i16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]i16](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]i32 {
-		mut arr := [][]i32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]i32](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]i32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]i32](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]i64 {
-		mut arr := [][]i64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]i64](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]i64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]i64](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]isize {
-		mut arr := [][]isize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]isize](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]isize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]isize](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]f32 {
-		mut arr := [][]f32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]f32](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]f32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]f32](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]f64 {
-		mut arr := [][]f64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]f64](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]f64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]f64](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]rune {
-		mut arr := [][]rune{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]rune](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]rune{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]rune](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][]string {
-		mut arr := [][]string{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[]string](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]string{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[]string](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]u8 {
-		mut arr := [][]u8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]u8](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]u8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]u8](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]u16 {
-		mut arr := [][]u16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]u16](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]u16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]u16](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]u32 {
-		mut arr := [][]u32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]u32](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]u32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]u32](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]u64 {
-		mut arr := [][]u64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]u64](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]u64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]u64](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]usize {
-		mut arr := [][]usize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]usize](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]usize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]usize](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]int {
-		mut arr := [][]int{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]int](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]int{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]int](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]i8 {
-		mut arr := [][]i8{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]i8](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]i8{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]i8](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]i16 {
-		mut arr := [][]i16{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]i16](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]i16{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]i16](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]i32 {
-		mut arr := [][]i32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]i32](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]i32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]i32](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]i64 {
-		mut arr := [][]i64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]i64](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]i64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]i64](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]isize {
-		mut arr := [][]isize{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]isize](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]isize{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]isize](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]f32 {
-		mut arr := [][]f32{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]f32](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]f32{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]f32](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]f64 {
-		mut arr := [][]f64{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]f64](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]f64{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]f64](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]rune {
-		mut arr := [][]rune{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]rune](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]rune{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]rune](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is [][][]string {
-		mut arr := [][]string{len: config.array_len[0]}
-		for i in 0 .. config.array_len[0] {
-			arr[i] = try_input[[][]string](array_len: config.array_len#[1..]) or { stack_input_error("Array", err) }
+		mut arr := [][]string{len: config.len[0]}
+		for i in 0 .. config.len[0] {
+			arr[i] = try_input[[][]string](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
 	} $else $if T is $Array {
-		return try_read_array(T{}, config.array_len)!
+		return try_read_array(T{}, config.len)!
 	} $else $if T is $Struct {
 		mut strc := T{}
 		mut has_array := false
@@ -732,7 +732,7 @@ pub fn try_input[T](config InputConfig) !T {
 					}
 					strc.$(field.name) = try_input_field(strc.$(field.name),
 						max_string_len: config.max_string_len
-						array_len: len
+						len: len
 					) or { return stack_input_error(typeof[T]().name, err) }
 				} $else $if field.is_struct {
 					strc.$(field.name) = try_input_field(strc.$(field.name), config) or { return stack_input_error(typeof[T]().name, err) }

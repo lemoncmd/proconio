@@ -60,11 +60,11 @@ fn test_string() ! {
 
 fn test_array() ! {
 	init_stdin('1 2 3')!
-	a := input[[]int](array_len: [3])
+	a := input[[]int](len: [3])
 	assert a == [int(1), 2, 3]
 
 	init_stdin('1 2 3\n4 5 6')!
-	b := input[[][]int](array_len: [2, 3])
+	b := input[[][]int](len: [2, 3])
 	assert b == [[int(1), 2, 3], [4, 5, 6]]
 }
 
@@ -118,7 +118,7 @@ fn test_readme() ! {
 	init_stdin('5\n2 3a foo\n4 5\n6 7\n8 9\n10 11\n1 2 3\n4 5 6\n5 4 3 2 1\n-3 -4')!
 	i := input[u64]() // you can specify what type you want to read by a generic parameter
 	inp := input[Input]() // you can also use a struct
-	arr := input[[]int](array_len: [int(i)]) // you can input an array
+	arr := input[[]int](len: [int(i)]) // you can input an array
 	// currently unavailable because of cgen bug. use try_input[u64]()! instead.
 	//	vec := try_input[Vec2]()! // try_input is `input` which returns Result of the specified type
 
