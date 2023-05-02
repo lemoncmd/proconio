@@ -37,7 +37,7 @@ fn stack_input_error(typ string, err IError) IError {
 fn read_array[T](_ []T, len []int) []T {
 	mut arr := []T{len: len[0]}
 	for i in 0 .. len[0] {
-		$if T is $Array {
+		$if T is $array {
 			arr[i] = read_array(T{}, len#[1..])
 		} $else {
 			arr[i] = input[T]()
@@ -52,7 +52,7 @@ fn try_read_array[T](_ []T, len []int) ![]T {
 	}
 	mut arr := []T{len: len[0]}
 	for i in 0 .. len[0] {
-		$if T is $Array {
+		$if T is $array {
 			arr[i] = try_read_array(T{}, len#[1..]) or { return stack_input_error('Array', err) }
 		} $else {
 			arr[i] = try_input[T]() or { return stack_input_error('Array', err) }
@@ -373,9 +373,9 @@ pub fn input[T](config InputConfig) T {
 			arr[i] = input[[][]string](len: config.len#[1..])
 		}
 		return arr
-	} $else $if T is $Array {
+	} $else $if T is $array {
 		return read_array(T{}, config.len)
-	} $else $if T is $Struct {
+	} $else $if T is $struct {
 		mut strc := T{}
 		mut has_array := false
 		$for field in T.fields {
@@ -712,9 +712,9 @@ pub fn try_input[T](config InputConfig) !T {
 			arr[i] = try_input[[][]string](len: config.len#[1..]) or { stack_input_error("Array", err) }
 		}
 		return arr
-	} $else $if T is $Array {
+	} $else $if T is $array {
 		return try_read_array(T{}, config.len)!
-	} $else $if T is $Struct {
+	} $else $if T is $struct {
 		mut strc := T{}
 		mut has_array := false
 		$for field in T.fields {
