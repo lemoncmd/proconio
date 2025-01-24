@@ -1,4 +1,4 @@
-// (c) 2023 lemoncmd.
+// (c) 2023-2025 lemoncmd.
 module proconio
 
 @[params]
