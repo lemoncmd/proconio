@@ -66,6 +66,10 @@ fn test_array() ! {
 	init_stdin('1 2 3\n4 5 6')!
 	b := input[[][]int](len: [2, 3])
 	assert b == [[int(1), 2, 3], [4, 5, 6]]
+
+	init_stdin('1 2\n3 4\n5 6\n7 8')!
+	c := input[[][][]int](len: [2, 2, 2])
+	assert c == [[[int(1), 2], [3, 4]], [[5, 6], [7, 8]]]
 }
 
 struct Foo {
