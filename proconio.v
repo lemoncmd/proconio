@@ -1,7 +1,7 @@
 // (c) 2023 lemoncmd.
 module proconio
 
-[params]
+@[params]
 pub struct InputConfig {
 	max_string_len int = 1_048_576
 	len      []int
@@ -61,12 +61,12 @@ fn try_read_array[T](_ []T, len []int) ![]T {
 	return arr
 }
 
-[inline]
+@[inline]
 fn input_field[T](_ T, config InputConfig) T {
 	return input[T](config)
 }
 
-[inline]
+@[inline]
 fn try_input_field[T](_ T, config InputConfig) !T {
 	return try_input[T](config)
 }

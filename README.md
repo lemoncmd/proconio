@@ -5,7 +5,7 @@ useful io library for programming contests
 
 # usage
 ```v
-import proconio
+import lemoncmd.proconio
 
 struct Vec2 {
   x u64
@@ -17,9 +17,9 @@ struct Input {
   j usize
   c rune // you can input a character by this
   s string // you can also read string
-  a []u64 [i] // you can specify how many times you want to read by variable
-  x []Vec2 [j] // you can also specify an array of a struct
-  y [][]u64 [i;j] // you can input multi-dimentional array by splitting with ;
+  a []u64 @[i] // you can specify how many times you want to read by variable
+  x []Vec2 @[j] // you can also specify an array of a struct
+  y [][]u64 @[i;j] // you can input multi-dimentional array by splitting with ;
 }
 
 i := proconio.input[u64]() // you can specify what type you want to read by a generic parameter

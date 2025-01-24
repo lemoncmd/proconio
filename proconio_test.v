@@ -76,13 +76,13 @@ struct Foo {
 
 struct Bar {
 	i int
-	a []int [i]
+	a []int @[i]
 }
 
 struct Baz {
 	i int
 	j int
-	a [][]int [i; j]
+	a [][]int @[i; j]
 }
 
 fn test_struct() ! {
@@ -109,9 +109,9 @@ struct Input {
 	j usize
 	c rune   // you can input a character by this
 	s string // you can also read string
-	a []u64   [i] // you can specify how many times you want to read by variable
-	x []Vec2  [j] // you can also specify an array of a struct
-	y [][]u64 [i; j] // you can input multi-dimentional array by splitting with ;
+	a []u64   @[i]    // you can specify how many times you want to read by variable
+	x []Vec2  @[j]    // you can also specify an array of a struct
+	y [][]u64 @[i; j] // you can input multi-dimentional array by splitting with ;
 }
 
 fn test_readme() ! {
